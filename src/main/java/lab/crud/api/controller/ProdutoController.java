@@ -1,12 +1,15 @@
 package lab.crud.api.controller;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,10 +24,14 @@ public class ProdutoController {
 	private ProdutoRepository repository;
 	
 	
-	//curl -X POST http://localhost:8080/produtos -H "Content-Type: application/json; Charset=utf-8" -d @produto-pao.json
 	
+	//curl -X POST http://localhost:8081/produtos -H "Content-Type: application/json; Charset=utf-8" -d @produto-pao.json
+	//curl -X POST http://localhost:8081/produtos -H "Content-Type: application/json; Charset=utf-8" -d @produto-pizza-calabresa.json
+	//curl -X PUT http://localhost:8080/produtos/1 -H "Content-Type: application/json; Charset=utf-8" -d @produto-mortadela2.json
 	
 	//@RequestMapping(method = RequestMethod.POST, path = "/produto")
+	
+	
 	@PostMapping("/produtos")
 	public ResponseEntity<Produto> novo(
 			@RequestBody Produto produto) {
@@ -50,4 +57,52 @@ public class ProdutoController {
 				.status(HttpStatus.OK)
 				.body(repository.findAll());
 	}
-}
+			
+	@GetMapping("/produtos/{id}")
+	public ResponseEntity<Object> buscarPorId(
+			@PathVariable Integer id) {
+		
+		//Alt + L
+		Optional<Produto>produtoEncontrado = repository.findById(id);
+			
+		//Empty = Vazio
+		if (produtoEncontrado.isEmpty()) {
+			return ResponseEntity
+					.status(HttpStatus.NOT_FOUND)
+					.body("Produto não encontrado");
+		}
+		return ResponseEntity
+				.status(HttpStatus.OK)
+				.body(produtoEncontrado.get());
+	}
+	
+	@PutMapping("/produtos/{id}")
+	public ResponseEntity<Object> atualizarProduto(
+			@PathVariable Integer id,
+			@RequestBody Produto prod) {
+		
+		Optional<Produto> produto = repository.findById(id);
+		
+	if(produto.isEmpty()) {
+		
+		return ResponseEntity
+				.status(HttpStatus.NOT_FOUND)
+				.body("Produto não encontrado");
+				
+	}
+	prod.setId(id);
+	prod.setDataCriacao(produto.get().getDataCriacao());
+	repository.save(prod);
+	
+	return ResponseEntity
+			.status(HttpStatus.OK)
+			.body("Produto atualizado com sucesso!");
+		
+	}
+	}
+// Para formatar Ctrl + Shift + F
+// Para testar pesquisar localhost:8081/produtos/1
+
+
+
+
