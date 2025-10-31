@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "TB_PROD")
 public class Produto {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -21,16 +21,16 @@ public class Produto {
 	private String descricao;
 	private BigDecimal preco;
 	private LocalDate dataCriacao;
-	
+
 	public Produto() {
-		
+
 	}
 
-	//Alt + SHIFT + S(Source/Fonte/Código Fonte)
+	// Alt + SHIFT + S(Source/Fonte/Código Fonte)
 	public Integer getId() {
 		return this.id;
 	}
-	
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -91,7 +91,5 @@ public class Produto {
 				&& Objects.equals(id, other.id) && Objects.equals(nome, other.nome)
 				&& Objects.equals(preco, other.preco);
 	}
-	
-	
-	
+
 }
