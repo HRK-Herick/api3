@@ -18,7 +18,7 @@ public class ImageController {
     @GetMapping("/image")
     public ResponseEntity<byte[]> getImagem() throws IOException {
         // Caminho completo da imagem no teu computador
-        Path caminho = Paths.get("C:\\Users\\rm100783\\Downloads\\Calopsita.png");
+        Path caminho = Paths.get("Z:\\Calopsita.png");
  
         // Lê todos os bytes do arquivo
         byte[] imagemBytes = Files.readAllBytes(caminho);
