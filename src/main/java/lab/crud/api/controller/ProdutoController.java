@@ -132,8 +132,14 @@ public class ProdutoController {
 	//DELETE
 
 // Para formatar Ctrl + Shift + F
-// Para testar pesquisar localhost:8081/produtos/1
+
+//Para pesquisar localhost:8081/produtos
+
+//Para testar o atualizar pesquisar localhost:8081/produtos/id
+
 
 //curl -X POST http://localhost:8081/produtos -H "Content-Type: application/json; Charset=utf-8" -d @produto-pao.json
+
 //curl -X POST http://localhost:8081/produtos -H "Content-Type: application/json; Charset=utf-8" -d @produto-pizza-calabresa.json
+
 //curl -X PUT http://localhost:8081/produtos/1 -H "Content-Type: application/json; Charset=utf-8" -d @produto-mortadela2.json

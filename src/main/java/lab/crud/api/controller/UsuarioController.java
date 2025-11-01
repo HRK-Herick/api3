@@ -100,7 +100,7 @@ public class UsuarioController {
 		//PUT
 		
 		//DELETE
-		//curl -X DELETE http://localhost:8081/produtos/1
+		//curl -X DELETE http://localhost:8081/usuarios/1
 		@DeleteMapping("/usuarios/{id}")
 		public ResponseEntity<Object> apagarUsuario(
 				@PathVariable Long id) {
@@ -126,7 +126,7 @@ public class UsuarioController {
 
 //Para pesquisar localhost:8081/usuarios
 
-//Para testar o atualizar pesquisar localhost:8081/usuarios/1
+//Para testar o atualizar pesquisar localhost:8081/usuarios/id
 
 //curl -X PUT http://localhost:8081/usuarios/1 -H "Content-Type: application/json; Charset=utf-8" -d @usuario2.json
 
